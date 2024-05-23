@@ -4,7 +4,8 @@ const recetaSchema = new mongoose.Schema({
     // nombre: { type: String, require: true}
     nombre: String,
     ingredientes: String,
-    porciones: Number
+    porciones: Number,
+    usuario:{type: mongoose.Schema.Types.ObjectId, ref: 'usuario'}
 });
 
 const RecetaModel = mongoose.model('Receta',recetaSchema, 'receta');

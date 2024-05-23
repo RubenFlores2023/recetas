@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const authRutas = require('./rutas/authRutas');
@@ -6,13 +7,18 @@ const Usuario = require('./models/Usuario');
 require('dotenv').config();
 const app = express();
 // ruta
-const recetaRutas = require('./rutas/Recetarutas');
+const recetaRutas = require('./rutas/recetaRutas');
 
 // configuraciones de environment
 const PORT = process.env.PORT || 3000;
 const MONGO_URI = process.env.MONGO_URI;
 //manejo de JSON
 app.use(express.json());
+const corsOptions ={
+    origin: ['http://localhost:4200','http://localhost:4200/'],
+    optionsSuccessStatus: 200
+};
+app.use(cors(corsOptions));
 
 //CONEXION CON MONGODB\
 mongoose.connect(MONGO_URI)
